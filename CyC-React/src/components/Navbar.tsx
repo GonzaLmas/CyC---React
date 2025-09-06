@@ -10,6 +10,7 @@ import {
 
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate, Link } from "react-router-dom";
+import FetchExample from "./FetchExample";
 
 const navigation = [
   { name: "Jugadoras Aptas", href: "/jugadorasaptas", current: true },
@@ -145,6 +146,7 @@ export default function Navbar() {
           ))}
         </div>
       </DisclosurePanel>
+      {location.pathname === "/navbar" && <FetchExample />}
     </Disclosure>
   );
 }

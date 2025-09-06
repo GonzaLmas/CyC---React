@@ -8,6 +8,7 @@ import TipoSemana from "./components/TipoSemana";
 import SemanaTrabajar from "./components/SemanaTrabajar.jsx";
 import FormJugadoraMensual from "./components/FormJugadoraMensual";
 import FormPercepcion from "./components/FormPercepcion";
+import Layout from "./components/Layout.js";
 
 function App() {
   return (
@@ -15,11 +16,13 @@ function App() {
       <Route path="/" element={<Index />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/navbar" element={<Navbar />} />
-      <Route path="/jugadorasaptas" element={<JugadorasAptas />} />
-      <Route path="/tiposemana" element={<TipoSemana />} />
-      <Route path="/semanatrabajar" element={<SemanaTrabajar />} />
-      <Route path="/formjugadora" element={<FormJugadoraMensual />} />
-      <Route path="/formpercepcion" element={<FormPercepcion />} />
+      <Route element={<Layout />}>
+        <Route path="/jugadorasaptas" element={<JugadorasAptas />} />
+        <Route path="/tiposemana" element={<TipoSemana />} />
+        <Route path="/semanatrabajar" element={<SemanaTrabajar />} />
+        <Route path="/formjugadora" element={<FormJugadoraMensual />} />
+        <Route path="/formpercepcion" element={<FormPercepcion />} />
+      </Route>
     </Routes>
   );
 }
