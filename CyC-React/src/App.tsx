@@ -10,6 +10,7 @@ import Index from "./components/Index";
 import TipoSemana from "./components/TipoSemana";
 import SemanaTrabajar from "./components/SemanaTrabajar";
 import FormJugadoraMensual from "./components/FormJugadoraMensual";
+import FormPercepcion from "./components/FormPercepcion";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/tiposemana" element={<TipoSemana />} />
       <Route path="/semanatrabajar" element={<SemanaTrabajar />} />
       <Route path="/formjugadora" element={<FormJugadoraMensual />} />
+      <Route path="/formpercepcion" element={<FormPercepcion />} />
     </Routes>
   );
 }

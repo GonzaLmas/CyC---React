@@ -16,6 +16,7 @@ const navigation = [
   { name: "Tipo de Semana", href: "/tiposemana", current: true },
   { name: "Semana a Trabajar", href: "/semanatrabajar", current: true },
   { name: "Formulario Jugadora", href: "/formjugadora", current: true },
+  { name: "Formulario Percepción", href: "/formpercepcion", current: true },
 ];
 
 // function classNames(...classes) {
