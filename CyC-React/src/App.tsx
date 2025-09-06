@@ -1,14 +1,11 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import LoginForm from "./components/LoginForm";
-import { Routes, BrowserRouter as Router, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import JugadorasAptas from "./components/JugadorasAptas";
 import Index from "./components/Index";
 import TipoSemana from "./components/TipoSemana";
-import SemanaTrabajar from "./components/SemanaTrabajar";
+import SemanaTrabajar from "./components/SemanaTrabajar.jsx";
 import FormJugadoraMensual from "./components/FormJugadoraMensual";
 import FormPercepcion from "./components/FormPercepcion";
 

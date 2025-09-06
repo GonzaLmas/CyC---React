@@ -1,49 +1,44 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
 
 const Competencia = () => {
-  const fechas: string[] = ["2025-09-09", "2025-09-08", "2025-09-07"];
+  const fechas = ["2025-09-09", "2025-09-08", "2025-09-07"];
 
   // Datos de ejemplo por día
   const capacidades = ["Resistencia Aeróbica", "Velocidad", "Fuerza"];
-  const propiedadesPorCapacidad: Record<string, string[]> = {
+  const propiedadesPorCapacidad = {
     "Resistencia Aeróbica": ["Intermitente 1", "Intermitente 2"],
     Velocidad: ["Velocidad Máxima", "Velocidad Media"],
     Fuerza: ["Fuerza Máxima", "Fuerza Resistencia"],
   };
 
-  const [fechaCompetencia, setFechaCompetencia] = useState<string>("");
-  const [selectedWeek, setSelectedWeek] = useState<number>(3); // ejemplo
-  const [dayCapacities, setDayCapacities] = useState<Record<number, string>>(
-    {}
-  );
-  const [dayProperties, setDayProperties] = useState<Record<number, string>>(
-    {}
-  );
+  const [fechaCompetencia, setFechaCompetencia] = useState("");
+  const [selectedWeek, _setSelectedWeek] = useState(3); // ejemplo
+  const [dayCapacities, setDayCapacities] = useState({});
+  const [dayProperties, setDayProperties] = useState({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e) => {
     setFechaCompetencia(e.target.value);
   };
 
-  const handleCapacityChange = (day: number, value: string) => {
+  const handleCapacityChange = (day, value) => {
     setDayCapacities({ ...dayCapacities, [day]: value });
     setDayProperties({ ...dayProperties, [day]: "" }); // reset subcapacidad
   };
 
-  const handlePropertyChange = (day: number, value: string) => {
+  const handlePropertyChange = (day, value) => {
     setDayProperties({ ...dayProperties, [day]: value });
   };
 
   const navigate = useNavigate();
 
-  const handleVolver = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault(); // evita que el form haga submit
+  const handleVolver = (e) => {
+    e.preventDefault();
     navigate("/navbar");
   };
 
-  const parseDate = (str: string) => new Date(str);
-  const formatDate = (date: Date) =>
+  const parseDate = (str) => new Date(str);
+  const formatDate = (date) =>
     date.toLocaleDateString("es-AR", {
       day: "2-digit",
       month: "2-digit",

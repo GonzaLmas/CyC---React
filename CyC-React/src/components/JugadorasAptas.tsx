@@ -1,5 +1,4 @@
 import Arrow from "./Arrow";
-import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
 const users = [

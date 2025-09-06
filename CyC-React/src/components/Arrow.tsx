@@ -1,5 +1,3 @@
-import React from "react";
-
 type Direction = "up" | "right" | "down" | "upRight" | "downRight";
 
 const arrowRotations: Record<Direction, string> = {
