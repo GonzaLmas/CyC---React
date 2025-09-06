@@ -2,13 +2,8 @@
 
 import { useState } from "react";
 import { ChevronDown, Calendar } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import "./TipoSemana.css";
-
-declare global {
-  interface Window {
-    propiedadesPorCapacidad?: { [key: string]: string[] };
-  }
-}
 
 const TipoSemana = () => {
   const [competencyDate, setCompetencyDate] = useState("2025-09-22");
@@ -20,8 +15,29 @@ const TipoSemana = () => {
     {}
   );
 
-  const capacidades = Object.keys(window.propiedadesPorCapacidad || {});
-  const propiedadesPorCapacidad = window.propiedadesPorCapacidad || {};
+  // Hardcodear capacidades y subcapacidades
+  const propiedadesPorCapacidad: { [key: string]: string[] } = {
+    Fuerza: [
+      "Hipertrofia Tren Superior",
+      "Potencia Tren Superior",
+      "Máxima Tren Superior",
+      "Hipertrofia Tren Inferior",
+      "Potencia Tren Inferior",
+      "Máxima Tren Inferior",
+    ],
+    Velocidad: ["Velocidad Máxima", "Resistencia"],
+    "Resistencia Aeróbica": ["Intermitente 1", "Intermitente 2"],
+    "Resistencia Anaeróbica": [
+      "Potencia Aeróbica Alta",
+      "Potencia Aeróbica Mixta",
+      "Potencia Aeróbica Media",
+      "Potencia Aeróbica Baja",
+    ],
+    Continuo: ["Corto", "Medio", "Largo"],
+    Flexibilidad: ["Flexibilidad"],
+  };
+
+  const capacidades = Object.keys(propiedadesPorCapacidad);
 
   const parseDate = (dateString: string) => {
     if (dateString.includes("/")) {
@@ -41,12 +57,18 @@ const TipoSemana = () => {
 
   const handleCapacityChange = (dayNum: number, value: string) => {
     setDayCapacities({ ...dayCapacities, [dayNum]: value });
-    // Reset propiedad
-    setDayProperties({ ...dayProperties, [dayNum]: "" });
+    setDayProperties({ ...dayProperties, [dayNum]: "" }); // Reset propiedad
   };
 
   const handlePropertyChange = (dayNum: number, value: string) => {
     setDayProperties({ ...dayProperties, [dayNum]: value });
+  };
+
+  const navigate = useNavigate();
+
+  const handleVolver = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault(); // evita que el form haga submit
+    navigate("/navbar");
   };
 
   return (
@@ -167,6 +189,13 @@ const TipoSemana = () => {
           className="btn btn-primary"
         >
           Guardar
+        </button>
+        <button
+          type="button"
+          onClick={handleVolver}
+          className="btn btn-primary"
+        >
+          Volver
         </button>
       </div>
     </div>
