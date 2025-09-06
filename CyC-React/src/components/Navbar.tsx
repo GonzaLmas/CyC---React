@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const navigation = [
   { name: "Jugadoras Aptas", href: "/jugadorasaptas", current: true },
   { name: "Tipo de Semana", href: "/tiposemana", current: true },
-  { name: "Semana a Trabajar", href: "/", current: true },
+  { name: "Semana a Trabajar", href: "/semanatrabajar", current: true },
 ];
 
 // function classNames(...classes) {

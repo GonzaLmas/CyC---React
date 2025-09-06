@@ -27,6 +27,13 @@ a:hover {
 .iniciarSesion {
   color: #f86d92;
 }
+
+.field-group label {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 0.95rem;
+}
+
 /*
 body {
   margin: 0;

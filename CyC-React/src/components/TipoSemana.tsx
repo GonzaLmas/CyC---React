@@ -33,7 +33,6 @@ const TipoSemana = () => {
       "Potencia Aeróbica Media",
       "Potencia Aeróbica Baja",
     ],
-    Continuo: ["Corto", "Medio", "Largo"],
     Flexibilidad: ["Flexibilidad"],
   };
 
@@ -75,7 +74,12 @@ const TipoSemana = () => {
     <div className="competency-form">
       <div className="form-header">
         <div className="field-group">
-          <label htmlFor="competency-date">Fecha de Competencia</label>
+          <label
+            htmlFor="competency-date"
+            className="font-weight: 500 color: rgba(255, 255, 255, 0.87) font-size: 0.95rem"
+          >
+            Fecha de Competencia
+          </label>
           <div className="date-input-wrapper">
             <input
               id="competency-date"
@@ -101,7 +105,7 @@ const TipoSemana = () => {
               disabled={!competencyDate}
               className="select-input"
             >
-              <option value="">Seleccione semana</option>
+              {!selectedWeek && <option value="">Seleccione semana</option>}
               {Array.from({ length: 13 }, (_, i) => (
                 <option key={i + 1} value={i + 1}>
                   Semana {i + 1}
