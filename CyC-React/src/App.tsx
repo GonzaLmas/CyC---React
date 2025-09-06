@@ -3,7 +3,7 @@ import LoginForm from "./components/LoginForm";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import JugadorasAptas from "./components/JugadorasAptas";
-import Index from "./components/Index";
+import Index from "./components/Index.jsx";
 import TipoSemana from "./components/TipoSemana";
 import SemanaTrabajar from "./components/SemanaTrabajar.jsx";
 import FormJugadoraMensual from "./components/FormJugadoraMensual";

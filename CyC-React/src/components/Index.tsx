@@ -1,43 +1,94 @@
 import { useNavigate } from "react-router-dom";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
+const navigation = [
+  { name: "Entrenamientos", href: "#" },
+  { name: "Mi Ciclo", href: "#" },
+];
 
 export default function Index() {
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault(); // evita que el form haga submit
+    e.preventDefault();
     navigate("/login");
   };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-primary">Ciclos y Cargas</h1>
-            <nav className="hidden md:flex items-center gap-6">
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Entrenamientos
-              </a>
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Mi Ciclo
-              </a>
-
-              <button
-                className="iniciarSesion cursor-pointer inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3"
-                onClick={handleClick}
-              >
-                Iniciar Sesión
-              </button>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Disclosure
+        as="header"
+        className="border-b border-border bg-card/50 backdrop-blur-sm"
+      >
+        {({ open }) => (
+          <>
+            <div className="container mx-auto px-4 py-4">
+              <div className="flex items-center justify-between">
+                <h1 className="text-2xl font-bold text-primary">
+                  Ciclos y Cargas
+                </h1>
+                {/* Desktop Nav */}
+                <nav className="hidden md:flex items-center gap-6">
+                  <a
+                    href={navigation[0].href}
+                    className="text-primary text-lg font-semibold hover:text-primary/80 transition-colors"
+                  >
+                    {navigation[0].name}
+                  </a>
+                  <a
+                    href={navigation[1].href}
+                    className="text-primary text-lg font-semibold hover:text-primary/80 transition-colors min-w-[120px] text-center"
+                  >
+                    {navigation[1].name}
+                  </a>
+                  <button
+                    className="iniciarSesion block text-destructive text-lg font-semibold hover:text-destructive/80 transition-colors py-2 text-center"
+                    onClick={handleClick}
+                  >
+                    Iniciar Sesión
+                  </button>
+                </nav>
+                {/* Mobile menu button */}
+                <div className="md:hidden">
+                  <DisclosureButton className="p-2 rounded-md text-muted-foreground hover:bg-card hover:text-foreground focus:outline-none">
+                    {open ? (
+                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                    )}
+                  </DisclosureButton>
+                </div>
+              </div>
+            </div>
+            {/* Mobile Nav */}
+            <DisclosurePanel className="md:hidden">
+              <nav className="px-4 pb-4 flex flex-col gap-2 items-center">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="block text-muted-foreground hover:text-foreground transition-colors py-2 text-center w-full"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                <button
+                  className="iniciarSesion cursor-pointer whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3"
+                  onClick={handleClick}
+                >
+                  Iniciar Sesión
+                </button>
+              </nav>
+            </DisclosurePanel>
+          </>
+        )}
+      </Disclosure>
 
       {/* Hero Section */}
       <section className="py-6 lg:py-10">
