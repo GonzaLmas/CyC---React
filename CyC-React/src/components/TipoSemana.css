@@ -116,6 +116,7 @@
 
 .btn-primary {
   background-color: #646cff;
+  cursor: pointer;
 }
 btn btn-primary .btn-primary:hover {
   background-color: #535bf2;
@@ -125,6 +126,7 @@ btn btn-primary .btn-primary:hover {
 .btn-secondary {
   background-color: #dc2626;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .btn-secondary:hover {
