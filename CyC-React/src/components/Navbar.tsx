@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+            <DisclosureButton className="cursor-pointer group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               <Bars3Icon
@@ -56,7 +56,7 @@ export default function Navbar() {
               <img
                 alt="Your Company"
                 src="/female-soccer-player-silhouette-f35580-md.png"
-                className="h-8 w-auto"
+                className="cursor-pointer h-8 w-auto"
                 onClick={handleClick}
               />
             </div>
@@ -83,7 +83,7 @@ export default function Navbar() {
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
               type="button"
-              className="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
+              className="cursor-pointer relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
@@ -92,7 +92,7 @@ export default function Navbar() {
 
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
-              <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+              <MenuButton className="cursor-pointer relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">Open user menu</span>
                 <img
