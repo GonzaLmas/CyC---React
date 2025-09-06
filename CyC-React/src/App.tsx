@@ -7,6 +7,7 @@ import { Routes, BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import JugadorasAptas from "./components/JugadorasAptas";
 import Index from "./components/Index";
+import TipoSemana from "./components/TipoSemana";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/login" element={<LoginForm />} />
       <Route path="/navbar" element={<Navbar />} />
       <Route path="/jugadorasaptas" element={<JugadorasAptas />} />
+      <Route path="/tiposemana" element={<TipoSemana />} />
     </Routes>
   );
 }

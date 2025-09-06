@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Jugadoras Aptas", href: "/jugadorasaptas", current: true },
-  { name: "Tipo de Semana", href: "#", current: false },
-  { name: "Semana a Trabajar", href: "#", current: false },
+  { name: "Tipo de Semana", href: "/tiposemana", current: true },
+  { name: "Semana a Trabajar", href: "/", current: true },
 ];
 
 // function classNames(...classes) {
@@ -57,6 +57,7 @@ export default function Navbar() {
                 alt="Your Company"
                 src="/female-soccer-player-silhouette-f35580-md.png"
                 className="h-8 w-auto"
+                onClick={handleClick}
               />
             </div>
             <div className="hidden sm:ml-6 sm:block">
