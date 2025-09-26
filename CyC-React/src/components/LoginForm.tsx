@@ -8,6 +8,11 @@ export default function LoginForm() {
     navigate("/navbar");
   };
 
+  const handleClick2 = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault(); // evita que el form haga submit
+    navigate("/registro");
+  };
+
   return (
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -84,6 +89,7 @@ export default function LoginForm() {
             <a
               href="#"
               className="font-semibold text-indigo-400 hover:text-indigo-300"
+              onClick={handleClick2}
             >
               Registrarme
             </a>

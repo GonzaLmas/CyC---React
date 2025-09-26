@@ -9,6 +9,7 @@ import SemanaTrabajar from "./components/SemanaTrabajar.jsx";
 import FormJugadoraMensual from "./components/FormJugadoraMensual";
 import FormPercepcion from "./components/FormPercepcion";
 import Layout from "./components/Layout.js";
+import Registro from "./components/Registro";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/semanatrabajar" element={<SemanaTrabajar />} />
         <Route path="/formjugadora" element={<FormJugadoraMensual />} />
         <Route path="/formpercepcion" element={<FormPercepcion />} />
+        <Route path="/registro" element={<Registro />} />
       </Route>
     </Routes>
   );

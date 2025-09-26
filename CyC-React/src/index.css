@@ -60,6 +60,18 @@ btn btn-primary .btn-primary:hover {
   transform: translateY(-1px);
 }
 
+select,
+select option {
+  background-color: #1a1a1a; /* mismo fondo oscuro */
+  color: rgba(255, 255, 255, 0.87); /* texto claro */
+}
+
+select:focus {
+  outline: none;
+  border-color: #646cff; /* resalta con tu color primario */
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.4);
+}
+
 /*
 body {
   margin: 0;
