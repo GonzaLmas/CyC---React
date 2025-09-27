@@ -9,7 +9,8 @@ import {
 } from "@headlessui/react";
 
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const navigation = [
   { name: "Jugadoras Aptas", href: "/jugadorasaptas", current: true },
@@ -19,11 +20,31 @@ const navigation = [
   { name: "Formulario Percepción", href: "/formpercepcion", current: true },
 ];
 
+interface UserData {
+  Email: string;
+  Nombre: string;
+  Apellido: string;
+  IdRol: number;
+}
+
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [user, setUser] = useState<UserData | null>(null);
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+  // Cargar datos del usuario al montar el componente
+  useEffect(() => {
+    const userData = localStorage.getItem("usuario");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, [location]); // Se ejecuta cuando cambia la ruta
+
+  const handleLogout = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    // Eliminar datos de sesión
+    localStorage.removeItem("usuario");
+    // Redirigir al login
     navigate("/");
   };
 
@@ -56,7 +77,7 @@ export default function Navbar() {
                 alt="Your Company"
                 src="/female-soccer-player-silhouette-f35580-md.png"
                 className="cursor-pointer h-8 w-auto"
-                onClick={handleClick}
+                onClick={() => navigate("/navbar")}
               />
             </div>
 
@@ -91,12 +112,21 @@ export default function Navbar() {
               <MenuButton className="cursor-pointer relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">Open user menu</span>
-                <img
-                  onClick={handleClick}
-                  alt=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTidghmPtP7a_DIcQVVThWQ6v2yZUWRs3qP5g&s"
-                  className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
-                />
+                <div className="flex items-center">
+                  <span className="mr-2 text-sm text-gray-300 hidden md:inline">
+                    {user ? `${user.Nombre} ${user.Apellido}` : "Usuario"}
+                  </span>
+                  <div className="size-8 rounded-full bg-gray-500 flex items-center justify-center text-white">
+                    {user ? (
+                      <span className="text-sm font-medium">
+                        {user.Nombre.charAt(0)}
+                        {user.Apellido.charAt(0)}
+                      </span>
+                    ) : (
+                      <span className="text-sm font-medium">U</span>
+                    )}
+                  </div>
+                </div>
               </MenuButton>
 
               <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-800 py-1 outline -outline-offset-1 outline-white/10">
@@ -118,7 +148,7 @@ export default function Navbar() {
                 </MenuItem>
                 <MenuItem>
                   <button
-                    onClick={handleClick}
+                    onClick={handleLogout}
                     className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-white/5"
                   >
                     Cerrar Sesión

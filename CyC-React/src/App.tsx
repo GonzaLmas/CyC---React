@@ -16,6 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/login" element={<LoginForm />} />
+      <Route path="/registro" element={<Registro />} />
       <Route path="/navbar" element={<Navbar />} />
       <Route element={<Layout />}>
         <Route path="/jugadorasaptas" element={<JugadorasAptas />} />
@@ -23,7 +24,6 @@ function App() {
         <Route path="/semanatrabajar" element={<SemanaTrabajar />} />
         <Route path="/formjugadora" element={<FormJugadoraMensual />} />
         <Route path="/formpercepcion" element={<FormPercepcion />} />
-        <Route path="/registro" element={<Registro />} />
       </Route>
     </Routes>
   );

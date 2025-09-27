@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { crearUsuario } from "../services/UsuarioService";
 
 export default function RegistroUsuario() {
@@ -13,6 +14,8 @@ export default function RegistroUsuario() {
 
   const [errorPass, setErrorPass] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [registroExitoso, setRegistroExitoso] = useState(false);
+  const navigate = useNavigate();
 
   const roles = [
     { value: "f211f07c-4004-4575-9dbc-af8dbbf3f8d0", text: "Admin" },
@@ -60,8 +63,10 @@ export default function RegistroUsuario() {
         Apellido: form.Apellido,
       });
 
-      setMensaje("Usuario registrado correctamente.");
+      setMensaje("¡Registro exitoso! Redirigiendo al inicio de sesión...");
+      setRegistroExitoso(true);
 
+      // Limpiar el formulario
       setForm({
         Email: "",
         Pass: "",
@@ -70,6 +75,11 @@ export default function RegistroUsuario() {
         Nombre: "",
         Apellido: "",
       });
+
+      // Redirigir después de 3 segundos
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     } catch (error) {
       console.error("Error al registrar usuario:", error);
       setMensaje(
@@ -123,7 +133,9 @@ export default function RegistroUsuario() {
               className="w-full px-3 py-2 border rounded-lg bg-transparent text-white focus:ring"
               placeholder="Confirme su contraseña"
             />
-            {errorPass && <p className="text-red-400 text-sm">{errorPass}</p>}
+            {errorPass && (
+              <div className="text-red-500 text-sm mt-1">{errorPass}</div>
+            )}
           </div>
 
           <div className="field-group">
@@ -184,24 +196,25 @@ export default function RegistroUsuario() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
-          >
-            Registrarse
-          </button>
-
-          {mensaje && (
-            <div
-              className={`mt-3 p-2 rounded-lg text-center ${
-                mensaje.includes("correctamente")
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-700"
-              }`}
+          <div className="flex flex-col items-center space-y-4 mt-6">
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full max-w-xs"
             >
-              {mensaje}
-            </div>
-          )}
+              Registrarse
+            </button>
+            {mensaje && (
+              <div
+                className={`text-sm w-full max-w-xs p-2 rounded text-center ${
+                  registroExitoso
+                    ? "text-green-400 bg-green-900/50"
+                    : "text-red-500 bg-red-900/50"
+                }`}
+              >
+                {mensaje}
+              </div>
+            )}
+          </div>
         </form>
 
         <p className="mt-4 text-center text-sm text-white">
